@@ -1,17 +1,23 @@
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MainTest extends CoreTestCase {
-   @Override
-   public void typeStartMessage() {
-      System.out.println("Current class is main test");
+   @Before
+   public void textStartTest() {
+      System.out.println("Start test");
    }
-
+   @After
+   public void textFinishTest() {
+      System.out.println("Finish test");
+   }
    @Test
-    public void myFirstTest() {
-      this.typeStartMessage();
-   }
+   public void firstTest() {
+      System.out.println("firstTest");
+      }
    @Test
-   public void mySecondTest() {
-      this.typeStartMessage();
+   public void secondTest() {
+      System.out.println("secondTest");
    }
-}
+   }
