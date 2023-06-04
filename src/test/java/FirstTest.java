@@ -41,8 +41,8 @@ public class FirstTest {
         element_to_init_search.click();
         WebElement element_to_enter_search_line = waitForElementPresentByXpath(
                 "//*[contains(@text,'Search…')]",
-                "Cannot find search input",
-                5);
+                "Cannot find search input"
+        );
         element_to_enter_search_line.sendKeys("Appium");
 //        System.out.println("First test run");
     }
@@ -51,6 +51,9 @@ public class FirstTest {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
         By by = By.xpath(xpath);
-        return wait.until(ExpectedConditions.presenceOfElementLocated(by);
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+    private WebElement waitForElementPresentByXpath(String xpath, String error_message) {
+      return waitForElementPresentByXpath(xpath, error_message, 5);
     }
 }
