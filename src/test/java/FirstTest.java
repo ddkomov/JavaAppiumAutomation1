@@ -582,6 +582,33 @@ public class FirstTest {
                 15
         );
     }
+    @Test
+    public void testCheckTitleElementInArticle()
+    {
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text,'Search Wikipedia')]"),
+                "Cannot find Search Wikipedia input",
+                5
+        );
+        String search_line = "Java";
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text,'Search…')]"),
+                search_line,
+                "Cannot find search input",
+                5
+        );
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+                "Cannot find Search Wikipedia input",
+                5
+        );
+        String article_title_element = "org.wikipedia:id/view_page_title_text";
+        assertElementPresent(
+                By.id(article_title_element),
+                "We have not found " + article_title_element + " in " + search_line + " article"
+        );
+
+    }
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
@@ -676,7 +703,7 @@ public class FirstTest {
     {
         int amount_of_elements = getAmountOfElements(by);
         if (amount_of_elements > 0) {
-            String default_message = "An element'" + by.toString() + "' supposed to be not present ";
+            String default_message = "An element '" + by.toString() + "' supposed to be not present ";
             throw new AssertionError(default_message + " " + error_message);
         }
     }
@@ -684,6 +711,13 @@ public class FirstTest {
     {
         WebElement element = waitForElementPresent(by, error_message, timeOutInSeconds);
         return element.getAttribute(attribute);
+    }
+    private void assertElementPresent(By by, String error_message)
+    {
+        int amount_of_elements = getAmountOfElements(by);
+        if (amount_of_elements == 0) {
+            throw new AssertionError(error_message);
+        }
     }
 }
 
