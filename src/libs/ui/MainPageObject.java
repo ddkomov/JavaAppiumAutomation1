@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainPageObject {
     protected AppiumDriver driver;
@@ -129,5 +130,23 @@ public class MainPageObject {
             throw new AssertionError(error_message);
         }
     }
+    public boolean isTextPresentInElementList(By by, String expected_text, String error_message, long timeOutInSeconds)
+    {
+        List <WebElement> list = driver.findElements(by);
+        Pattern pattern = Pattern.compile(expected_text.toLowerCase());
+        boolean result = false;
+        for(WebElement element : list)
+        {
+            String getElementTextWithAttribute = element.getAttribute("text").toLowerCase();
+            if (pattern.matcher(getElementTextWithAttribute.toLowerCase()).find())
+            {
+                result = true;
+            } else {
+                result = false;
+            }
+        }
+        return result;
+    }
+
 }
 

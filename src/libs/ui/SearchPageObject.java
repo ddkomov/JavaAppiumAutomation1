@@ -74,4 +74,9 @@ public class SearchPageObject extends MainPageObject {
     {
         this.assertElementNotPresent(By.xpath(SEARCH_RESULT_ELEMENT),"We supposed not to find any results");
     }
+    public boolean isSearchLineInputInSearchResulList(String expected_text)
+    {
+        String search_result_xpath = getResultSearchElement(expected_text);
+        return this.isTextPresentInElementList(By.xpath(search_result_xpath), expected_text,"Cannot find search line input text " + expected_text + " in result list",10);
+    }
 }
