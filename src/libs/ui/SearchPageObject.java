@@ -32,7 +32,7 @@ public class SearchPageObject extends MainPageObject {
 
     public void typeSearchLine(String search_line)
     {
-        this.waitForElementAndSendKeys(By.xpath(SEARCH_INPUT),search_line,"Cannot find and type into search input", 5);
+        this.waitForElementAndSendKeys(By.xpath(SEARCH_INPUT),search_line,"Cannot find and type into search input", 10);
     }
     public void waitForSearchResult(String substring)
     {
@@ -74,9 +74,9 @@ public class SearchPageObject extends MainPageObject {
     {
         this.assertElementNotPresent(By.xpath(SEARCH_RESULT_ELEMENT),"We supposed not to find any results");
     }
-    public boolean isSearchLineInputInSearchResulList(String expected_text)
+    public void isSearchLineInputInSearchResultList(String expected_text)
     {
         String search_result_xpath = getResultSearchElement(expected_text);
-        return this.isTextPresentInElementList(By.xpath(search_result_xpath), expected_text,"Cannot find search line input text " + expected_text + " in result list",10);
+        this.isTextPresentInElementList(By.xpath(search_result_xpath), expected_text,"Cannot find search line input text " + expected_text + " in result list",10);
     }
 }

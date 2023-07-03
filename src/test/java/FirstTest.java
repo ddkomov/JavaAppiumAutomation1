@@ -19,6 +19,8 @@ public class FirstTest extends CoreTestCase {
 
     @Test
     public void testCompareArticleTitleAndCancelSearch() {
+
+
         MainPageObject.waitForElementAndClick(
                 By.xpath("//*[contains(@text,'Search Wikipedia')]"),
                 "Cannot find Search Wikipedia input",

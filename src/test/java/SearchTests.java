@@ -44,15 +44,12 @@ public class SearchTests extends CoreTestCase{
         SearchPageObject.assertThereIsNoResultOfSearch();
     }
     @Test
-    public void testIsSearchLineInputPresentInSearchResultList(){
+    public void testIsSearchLineInputPresentInSearchResultList() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
         String search_line = "Java";
         SearchPageObject.typeSearchLine(search_line);
-
-        assertTrue(
-                "We didn't found search line text in results",
-                SearchPageObject.isSearchLineInputInSearchResulList(search_line));
+        SearchPageObject.isSearchLineInputInSearchResultList(search_line);
     }
 }

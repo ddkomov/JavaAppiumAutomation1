@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static junit.framework.TestCase.assertTrue;
+
 public class MainPageObject {
     protected AppiumDriver driver;
 
@@ -130,22 +132,15 @@ public class MainPageObject {
             throw new AssertionError(error_message);
         }
     }
-    public boolean isTextPresentInElementList(By by, String expected_text, String error_message, long timeOutInSeconds)
+    public void isTextPresentInElementList(By by, String expected_text, String error_message, long timeOutInSeconds)
     {
+        waitForElementPresent(by,"Cannot find element with text " + expected_text, 10);
         List <WebElement> list = driver.findElements(by);
-        Pattern pattern = Pattern.compile(expected_text.toLowerCase());
-        boolean result = false;
-        for(WebElement element : list)
-        {
-            String getElementTextWithAttribute = element.getAttribute("text").toLowerCase();
-            if (pattern.matcher(getElementTextWithAttribute.toLowerCase()).find())
-            {
-                result = true;
-            } else {
-                result = false;
-            }
-        }
-        return result;
+        expected_text = expected_text.toLowerCase();
+        for (WebElement element : list) {
+            String element_text = element.getAttribute("text").toLowerCase();
+            assertTrue("Element doesn’t contain text "  + expected_text, element_text.contains(expected_text));
+       }
     }
 
 }
