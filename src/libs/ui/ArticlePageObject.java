@@ -76,6 +76,25 @@ public class ArticlePageObject extends  MainPageObject
         );
 
     }
+    public void addSecondArticleToExictingMyList(String name_of_folder)
+    {
+        this.waitForElementAndClick(
+                By.xpath(OPTIONS_BUTTON),
+                "Cannot find button to open article options",
+                10
+        );
+        this.waitForElementAndClick(
+                By.xpath(OPTIONS_ADD_TO_MY_LIST_BUTTON),
+                "Cannot find option to add article to reading list",
+                5
+        );
+        this.waitForElementAndClick(
+                By.xpath("//*[@text='" + name_of_folder + "']"),
+                "Cannot find option to add article to reading list named " + name_of_folder,
+                5
+        );
+
+    }
     public void closeArticle()
     {
         this.waitForElementAndClick(
