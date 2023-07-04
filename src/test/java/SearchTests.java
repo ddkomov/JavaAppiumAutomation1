@@ -46,10 +46,23 @@ public class SearchTests extends CoreTestCase{
     @Test
     public void testIsSearchLineInputPresentInSearchResultList() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.initSearchInput();
         String search_line = "Java";
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.isSearchLineInputInSearchResultList(search_line);
+    }
+    @Test
+    public void testCompareArticleTitleAndCancelSearch() {
+
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.initSearchInput();
+        String search_line = "Java";
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.assertSearchResultElementHasText(search_line);
+        String search_line2 = "JavaScript";
+        SearchPageObject.assertSearchResultElementHasText(search_line2);
+        SearchPageObject.clickCancelSearch();
+        SearchPageObject.clickCancelSearch();
+        SearchPageObject.waitForCancelButtonToDisappear();
     }
 }

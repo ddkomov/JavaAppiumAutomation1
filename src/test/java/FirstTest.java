@@ -17,53 +17,7 @@ public class FirstTest extends CoreTestCase {
     }
     /*УБРАТЬ ПОСЛЕ РЕФАКТОРИНГА<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-    @Test
-    public void testCompareArticleTitleAndCancelSearch() {
 
-
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[contains(@text,'Search Wikipedia')]"),
-                "Cannot find Search Wikipedia input",
-                5
-        );
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text,'Search…')]"),
-                "Java",
-                "Cannot find search input",
-                5
-        );
-        MainPageObject.assertElementHasText(
-                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Java']"),
-                "Java",
-                "Cannot find text 'Java' in search results",
-                5
-        );
-        MainPageObject.assertElementHasText(
-                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='JavaScript']"),
-                "JavaScript",
-                "Cannot find text 'JavaScript' in search results",
-                5
-        );
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/search_close_btn"),
-                "Cannot find X to cancel search",
-                5
-        );
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/search_close_btn"),
-                "Cannot find X to cancel search",
-                5
-        );
-        MainPageObject.waitForElementNotPresent(
-                By.id("org.wikipedia:id/search_close_btn"),
-                "X is still present in the page",
-                5
-        );
-    }
-
-    //    @Test
-
-//    }
     @Test
     public void testSaveTwoArticlesToMyLists() {
         MainPageObject.waitForElementAndClick(
